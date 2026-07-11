@@ -6,6 +6,27 @@ and validation, into a SQLite database, with SQL analytics (joins,
 aggregations, window functions, CTEs, cohort/retention analysis) surfaced
 through a command-line reporting tool.
 
+
+## AI Assistance Disclosure
+
+This project was built with approximately 30% AI assistance (Claude), used specifically for:
+
+- **Boilerplate scaffolding** — initial structure of `generate_data.py`, `clean_data.py`,
+  `load_to_sql.py`, and `report_cli.py` (function layout, argparse setup, file I/O patterns).
+- **Debugging two specific pandas issues**: (1) `pd.to_datetime()` silently mis-parsing
+  future-dated rows as unparseable when the column had mixed date formats — fixed by adding
+  `format='mixed'`; (2) missing email/phone values not being caught by string-replace logic
+  because pandas' newer string dtype doesn't stringify `NaN` the way `astype(str)` used to —
+  fixed by using `.fillna()` before the string operations.
+- **SQL query drafting** for the window functions (`RANK`, `DENSE_RANK`, `LAG`, running totals)
+  and the cohort/retention CTEs, which I then reviewed, ran, and adjusted logic on
+  (e.g. the churn threshold, the segmentation tiers).
+- **README structure and formatting.**
+
+The core design decisions — what fields to clean, which anomalies/edge cases to handle,
+what the CLI reports should show, and the overall pipeline flow — were mine. I ran, tested,
+and verified every script and query myself before including it here.
+
 ## 1. Architecture
 
 ```
