@@ -1,0 +1,13 @@
+=== starting data cleaning ===
+
+[customers] 815 raw rows -> 800 cleaned rows (15 duplicates removed)
+[customers] 39 missing emails filled, 26 missing phones filled
+[products] 150 raw rows -> 144 cleaned rows
+[products] 3 missing categories filled, 6 bad prices removed
+[orders] 4020 raw rows -> 3777 cleaned rows (20 duplicates removed)
+[orders] 94 unparseable dates removed, 61 future dates removed
+[orders] 68 rows with unknown customer_id removed
+[order_items] 12117 raw rows -> 10451 cleaned rows (25 duplicates removed)
+[order_items] 797 unknown order_id, 589 unknown product_id removed
+[order_items] 156 bad quantities, 99 missing prices removed
+=== cleaning complete. files written to data/cleaned/ ===
